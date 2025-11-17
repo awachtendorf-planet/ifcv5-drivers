@@ -1,0 +1,224 @@
+
+<?xml version="1.0" encoding="UTF-8"?>
+
+<xmlpos>
+
+<schema xmlns="http://www.w3.org/2001/XMLSchema"
+    targetNamespace="LinkControl"
+    elementFormDefault="qualified">
+
+  <element name="LinkDescription">
+  <complexType>
+    <attribute name="Date" type="date" use="required" />
+    <attribute name="Time" type="time" use="required" />
+    <attribute name="VerNum" type="string" use="required" />
+  </complexType>
+  </element>
+
+  <element name="LinkStart">
+  <complexType>
+    <attribute name="Date" type="date" use="required" />
+    <attribute name="Time" type="time" use="required" />
+  </complexType>
+  </element>
+
+  <element name="LinkAlive">
+  <complexType>
+    <attribute name="Date" type="date" use="required" />
+    <attribute name="Time" type="time" use="required" />
+  </complexType>
+  </element>
+
+</schema>
+
+<schema xmlns="http://www.w3.org/2001/XMLSchema"
+    targetNamespace="PostInquirySchema_I"
+    elementFormDefault="qualified">
+
+  <element name="PostInquiry">
+  <complexType>
+    <attribute name="InquiryInformation" type="string" use="required" />
+    <attribute name="MaximumReturnedMatches" type="integer" use="optional" />
+    <attribute name="SequenceNumber" type="integer" use="required" />
+    <attribute name="RequestType" type="integer" use="required" />
+    <attribute name="PaymentMethod" type="string" use="required" />
+    <attribute name="Date" type="date" use="required" />
+    <attribute name="Time" type="time" use="required" />
+    <attribute name="RevenueCenter" type="integer" use="optional" />
+    <attribute name="WaiterId" type="string" use="optional" />
+    <attribute name="WorkstationId" type="string" use="required" />
+  </complexType>
+  </element>
+
+</schema>
+
+<schema xmlns="http://www.w3.org/2001/XMLSchema"
+    targetNamespace="PostListSchema_O"
+    elementFormDefault="qualified">
+
+  <element name="PostListItem">
+  <complexType>
+    <attribute name="RoomNumber" type="string" use="required" />
+    <attribute name="ReservationId" type="integer" use="required" />
+    <attribute name="LastName" type="string" use="required" />
+    <attribute name="Vip" type="string" use="optional" />
+    <attribute name="PaymentMethod" type="string" use="optional" />
+    <attribute name="NoPost" type="string" use="required" />
+    <attribute name="CreditLimit" type="decimal" use="required" />
+    <attribute name="ProfileId" type="integer" use="required" />
+    <attribute name="HotelId" type="integer" use="required" />
+    <attribute name="FirstName" type="string" use="optional" />
+    <attribute name="Title" type="string" use="optional" />
+    <attribute name="Reference1" type="string" use="optional" />
+    <attribute name="Reference2" type="string" use="optional" />
+    <attribute name="Reference3" type="string" use="optional" />
+    <attribute name="Reference4" type="string" use="optional" />
+    <attribute name="Reference5" type="string" use="optional" />
+    <attribute name="Reference6" type="string" use="optional" />
+    <attribute name="Reference7" type="string" use="optional" />
+    <attribute name="Reference8" type="string" use="optional" />
+    <attribute name="Reference9" type="string" use="optional" />
+    <attribute name="Reference10" type="string" use="optional" />
+  </complexType>
+  </element>
+
+  <element name="PostList">
+  <complexType>
+    <sequence>
+      <element name="PostListItem" type="PostListSchema_O:PostListItem" maxOccurs="unbounded" />
+    </sequence>
+    <attribute name="SequenceNumber" type="integer" use="required" />
+    <attribute name="HotelId" type="string" use="required" />
+    <attribute name="PaymentMethod" type="string" use="required" />
+    <attribute name="RevenueCenter" type="integer" use="optional" />
+    <attribute name="WaiterId" type="string" use="optional" />
+    <attribute name="WorkstationId" type="string" use="required" />
+    <attribute name="Date" type="date" use="required" />
+    <attribute name="Time" type="time" use="required" />
+  </complexType>
+  </element>
+
+</schema>
+
+<schema xmlns="http://www.w3.org/2001/XMLSchema"
+    targetNamespace="PostRequestSchema_I"
+    elementFormDefault="qualified">
+
+  <element name="PostRequest">
+  <complexType>
+    <attribute name="RoomNumber" type="string" use="required" />
+    <attribute name="ReservationId" type="integer" use="required" />
+    <attribute name="LastName" type="string" use="required" />
+    <attribute name="HotelId" type="integer" use="required" />
+    <attribute name="RequestType" type="integer" use="required" />
+    <attribute name="InquiryInformation" type="string" use="required" />
+    <attribute name="MatchfromPostList" type="integer" use="required" />
+    <attribute name="SequenceNumber" type="integer" use="required" />
+    <attribute name="TotalAmount" type="integer" use="required" />
+    <attribute name="CreditlimitOverride" type="string" use="optional" />
+    <attribute name="PostingDescription" type="string" use="optional" />
+    <attribute name="PaymentMethod" type="string" use="required" />
+    <attribute name="Covers" type="integer" use="optional" />
+    <attribute name="RevenueCenter" type="integer" use="optional" />
+    <attribute name="ServingTime" type="integer" use="optional" />
+    <attribute name="CheckNumber" type="integer" use="required" />
+    <attribute name="Subtotal1" type="integer" use="optional" />
+    <attribute name="Subtotal2" type="integer" use="optional" />
+    <attribute name="Subtotal3" type="integer" use="optional" />
+    <attribute name="Subtotal4" type="integer" use="optional" />
+    <attribute name="Subtotal5" type="integer" use="optional" />
+    <attribute name="Subtotal6" type="integer" use="optional" />
+    <attribute name="Subtotal7" type="integer" use="optional" />
+    <attribute name="Subtotal8" type="integer" use="optional" />
+    <attribute name="Subtotal9" type="integer" use="optional" />
+    <attribute name="Subtotal10" type="integer" use="optional" />
+    <attribute name="Subtotal11" type="integer" use="optional" />
+    <attribute name="Subtotal12" type="integer" use="optional" />
+    <attribute name="Subtotal13" type="integer" use="optional" />
+    <attribute name="Subtotal14" type="integer" use="optional" />
+    <attribute name="Subtotal15" type="integer" use="optional" />
+    <attribute name="Subtotal16" type="integer" use="optional" />
+    <attribute name="Discount1" type="integer" use="optional" />
+    <attribute name="Discount2" type="integer" use="optional" />
+    <attribute name="Discount3" type="integer" use="optional" />
+    <attribute name="Discount4" type="integer" use="optional" />
+    <attribute name="Discount5" type="integer" use="optional" />
+    <attribute name="Discount6" type="integer" use="optional" />
+    <attribute name="Discount7" type="integer" use="optional" />
+    <attribute name="Discount8" type="integer" use="optional" />
+    <attribute name="Discount9" type="integer" use="optional" />
+    <attribute name="Discount10" type="integer" use="optional" />
+    <attribute name="Discount11" type="integer" use="optional" />
+    <attribute name="Discount12" type="integer" use="optional" />
+    <attribute name="Discount13" type="integer" use="optional" />
+    <attribute name="Discount14" type="integer" use="optional" />
+    <attribute name="Discount15" type="integer" use="optional" />
+    <attribute name="Discount16" type="integer" use="optional" />
+    <attribute name="Tip" type="integer" use="optional" />
+    <attribute name="ServiceCharge1" type="integer" use="optional" />
+    <attribute name="ServiceCharge2" type="integer" use="optional" />
+    <attribute name="ServiceCharge3" type="integer" use="optional" />
+    <attribute name="ServiceCharge4" type="integer" use="optional" />
+    <attribute name="ServiceCharge5" type="integer" use="optional" />
+    <attribute name="ServiceCharge6" type="integer" use="optional" />
+    <attribute name="ServiceCharge7" type="integer" use="optional" />
+    <attribute name="ServiceCharge8" type="integer" use="optional" />
+    <attribute name="ServiceCharge9" type="integer" use="optional" />
+    <attribute name="ServiceCharge10" type="integer" use="optional" />
+    <attribute name="ServiceCharge11" type="integer" use="optional" />
+    <attribute name="ServiceCharge12" type="integer" use="optional" />
+    <attribute name="ServiceCharge13" type="integer" use="optional" />
+    <attribute name="ServiceCharge14" type="integer" use="optional" />
+    <attribute name="ServiceCharge15" type="integer" use="optional" />
+    <attribute name="ServiceCharge16" type="integer" use="optional" />
+    <attribute name="Tax1" type="integer" use="optional" />
+    <attribute name="Tax2" type="integer" use="optional" />
+    <attribute name="Tax3" type="integer" use="optional" />
+    <attribute name="Tax4" type="integer" use="optional" />
+    <attribute name="Tax5" type="integer" use="optional" />
+    <attribute name="Tax6" type="integer" use="optional" />
+    <attribute name="Tax7" type="integer" use="optional" />
+    <attribute name="Tax8" type="integer" use="optional" />
+    <attribute name="Tax9" type="integer" use="optional" />
+    <attribute name="Tax10" type="integer" use="optional" />
+    <attribute name="Tax11" type="integer" use="optional" />
+    <attribute name="Tax12" type="integer" use="optional" />
+    <attribute name="Tax13" type="integer" use="optional" />
+    <attribute name="Tax14" type="integer" use="optional" />
+    <attribute name="Tax15" type="integer" use="optional" />
+    <attribute name="Tax16" type="integer" use="optional" />
+    <attribute name="Date" type="date" use="required" />
+    <attribute name="Time" type="time" use="required" />
+    <attribute name="WaiterId" type="string" use="optional" />
+    <attribute name="WorkstationId" type="string" use="required" />
+  </complexType>
+  </element>
+
+</schema>
+
+<schema xmlns="http://www.w3.org/2001/XMLSchema"
+    targetNamespace="PostAnswerSchema_O"
+    elementFormDefault="qualified">
+
+  <element name="PostAnswer">
+  <complexType>
+    <attribute name="RoomNumber" type="string" use="optional" />
+    <attribute name="ReservationId" type="integer" use="optional" />
+    <attribute name="LastName" type="string" use="optional" />
+    <attribute name="AnswerStatus" type="string" use="required" />
+    <attribute name="ResponseText" type="string" use="required" />
+    <attribute name="CheckNumber" type="integer" use="optional" />
+    <attribute name="SequenceNumber" type="integer" use="required" />
+    <attribute name="HotelId" type="integer" use="required" />
+    <attribute name="Date" type="date" use="required" />
+    <attribute name="Time" type="time" use="required" />
+    <attribute name="PaymentMethod" type="string" use="required" />
+    <attribute name="RevenueCenter" type="integer" use="required" />
+    <attribute name="WaiterId" type="string" use="optional" />
+    <attribute name="WorkstationId" type="string" use="required" />
+  </complexType>
+  </element>
+
+</schema>
+
+</xmlpos>

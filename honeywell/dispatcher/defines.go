@@ -1,0 +1,7 @@
+package honeywell
+
+const (
+	HONEYWELL_PROTOCOL = 1
+	ALERTON_PROTOCOL_1 = 2
+	ALERTON_PROTOCOL_2 = 3
+)
