@@ -102,19 +102,3 @@ func (p *Plugin) getField(packet *ifc.LogicalPacket, field string, trim bool) st
 
 	return value
 }
-
-func (p *Plugin) incrementSequenceNumber(sequenceNumber string) string {
-	s := cast.ToInt(sequenceNumber)
-
-	s++
-
-	if s > 99 {
-		return "01"
-	}
-
-	if s < 10 {
-		return fmt.Sprintf("0%d", s)
-	}
-
-	return fmt.Sprintf("%d", s)
-}

@@ -21,8 +21,6 @@ func (p *Plugin) handleFascimile(addr string, packet *ifc.LogicalPacket, action 
 
 	successMessage := setLength(data, 70)
 
-	//sequenceNumber = p.incrementSequenceNumber(sequenceNumber)
-
 	response.Add("SourceID", []byte(setLength(sourceID, 25)))
 	response.Add("SequenceNumber", []byte(sequenceNumber))
 	response.Add("MessageRetransmitFlag", []byte(retransmit))

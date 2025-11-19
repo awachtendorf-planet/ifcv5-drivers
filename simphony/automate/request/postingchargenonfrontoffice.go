@@ -25,10 +25,7 @@ func (p *Plugin) handleNonFrontOfficePostingCharge(addr string, packet *ifc.Logi
 	sourceID := p.getField(packet, "SourceID", true)
 	workStation := p.getWorkStation(sourceID, station)
 
-	//requestInquiry := p.getField(packet, "GuestID", true)
 	sequenceNumber := p.getField(packet, "SequenceNumber", true)
-	//guestName := p.getField(packet, "GuestName", true)
-	//selectionNumber := cast.ToInt(p.getField(packet, "SelectionNumber", true))
 	paymentType := p.getField(packet, "PaymentType", true)
 	tenderamount := cast.ToFloat64(p.getField(packet, "TenderAmount", true))
 	numSalesItemizer := cast.ToInt(p.getField(packet, "NumSalesItemizer", true))
@@ -94,8 +91,6 @@ func (p *Plugin) handleNonFrontOfficePostingCharge(addr string, packet *ifc.Logi
 		UserID:         checkEmployeeNumber,
 		WorkStation:    workStation,
 	}
-
-	//sequenceNumber = p.incrementSequenceNumber(sequenceNumber)
 
 	response := ifc.NewLogicalPacket(template.PacketChargePostingAck, addr, packet.Tracking)
 

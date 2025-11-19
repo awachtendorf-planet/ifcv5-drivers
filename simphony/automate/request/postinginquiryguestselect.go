@@ -1,6 +1,7 @@
 package request
 
 import (
+	"errors"
 	"fmt"
 	"strconv"
 	"strings"
@@ -12,6 +13,8 @@ import (
 	"github.com/weareplanet/ifcv5-main/log"
 )
 
+const CANCELLATION = "Posted successfully"
+
 func (p *Plugin) handlePostingInquiry(addr string, packet *ifc.LogicalPacket, action *dispatcher.StateAction) error {
 
 	dispatcherObj := p.GetDispatcher()
@@ -19,12 +22,41 @@ func (p *Plugin) handlePostingInquiry(addr string, packet *ifc.LogicalPacket, ac
 	station, _ := dispatcherObj.GetStationAddr(addr)
 
 	requestInquiry := p.getField(packet, "GuestID", true)
+
 	retransmit := setLength((p.getField(packet, "MessageRetransmitFlag", true)), 1)
 	sequenceNumber := p.getField(packet, "SequenceNumber", true)
 	paymentType := p.getField(packet, "PaymentType", true)
 	sourceID := p.getField(packet, "SourceID", true)
 
 	workStation := p.getWorkStation(sourceID, station)
+
+	if requestInquiry == CANCELLATION {
+		log.Support().Msgf("received cancellation packet")
+
+		response := ifc.NewLogicalPacket(template.PacketChargePostingAck, addr, packet.Tracking)
+
+		response.Add("SourceID", []byte(setLength(sourceID, 25)))
+		response.Add("Message", []byte(setLength("guest select canceled", 30)))
+		response.Add("SequenceNumber", []byte(sequenceNumber))
+		response.Add("MessageRetransmitFlag", []byte(retransmit))
+		response.Add("MessageStatus", []byte("N"))
+		response.Add("Status", []byte("P"))
+		chksum := p.driver.CalcChecksum(response.Addr, response)
+		response.Add("Checksum", chksum)
+
+		if len(chksum) > 0 {
+			if p.driver.CheckChecksum(packet) {
+				err := p.SendPacket(addr, response, action)
+				return err
+
+			}
+		} else {
+			err := p.SendPacket(addr, response, action)
+			return err
+		}
+
+		return errors.New("Checksum Mismatch")
+	}
 
 	inquiry := record.PostingInquiry{
 		Station:        station,
@@ -35,8 +67,6 @@ func (p *Plugin) handlePostingInquiry(addr string, packet *ifc.LogicalPacket, ac
 		SequenceNumber: sequenceNumber,
 		PaymentMethod:  paymentType,
 	}
-
-	//sequenceNumber = p.incrementSequenceNumber(sequenceNumber)
 
 	reply, err := p.PmsRequest(addr, inquiry, packet)
 	if err != nil {

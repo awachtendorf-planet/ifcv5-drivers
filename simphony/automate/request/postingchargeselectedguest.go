@@ -106,8 +106,6 @@ func (p *Plugin) handlePostingCharge(addr string, packet *ifc.LogicalPacket, act
 		PostingRoute:         0,
 	}
 
-	//sequenceNumber = p.incrementSequenceNumber(sequenceNumber)
-
 	response := ifc.NewLogicalPacket(template.PacketChargePostingAck, addr, packet.Tracking)
 
 	reply, err := p.PmsRequest(addr, posting, packet)
